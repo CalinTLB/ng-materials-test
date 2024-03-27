@@ -1,0 +1,27 @@
+<form action="" [formGroup]="foodForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Enter name</mat-label>
+        <input type="text" matInput placeholder="Name" required formControlName="name">
+        @if (foodForm.get('name')?.hasError('required') && foodForm.get('name')?.touched){
+            <mat-error>Name is required</mat-error>
+        }
+        @if (foodForm.get('name')?.hasError('minlength') && foodForm.get('name')?.touched){
+            <mat-error>Name must be 3 characters long</mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Food</mat-label>
+        <mat-select formControlName="food">
+            <mat-option value="1">Pizza</mat-option>
+            <mat-option value="2">Burger</mat-option>
+            <mat-option value="3">Pasta</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Choose your date</mat-label>
+        <input type="text" matInput [matDatepicker]="picker" required formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</form>
